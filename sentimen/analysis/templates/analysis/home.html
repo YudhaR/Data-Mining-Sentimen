@@ -1,0 +1,101 @@
+{% load static  %}
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--=============== FAVICON ===============-->
+        <link rel="shortcut icon" href="{% static 'analysis/images/icon.png' %}" type="image/x-icon">
+
+        <!--=============== ICONS ===============-->
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+        <!--=============== CSS ===============-->
+        <link rel="stylesheet" href="{% static 'analysis/css/style.css' %}">
+
+        <title>Bajikuy</title>
+    </head>
+    <body>
+    
+
+
+        <!--==================== HEADER ====================-->
+        <header class="header" id="header">
+            <nav class="nav container">
+                <a href="{% url 'home' %}" class="nav__logo">
+                    <img src="{% static 'analysis/images/bajikuyyy.png' %}" alt="logo">
+                </a>
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="{% url 'home' %}" class="nav__link active-link">Home</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="{% url 'task' %}" class="nav__link">Crawling Data</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="{% url 'task' %}" class="nav__link">Task</a>
+                        </li>
+                    </ul>
+                    <!-- Close button -->
+                    <div class="nav__close" id="nav-close">
+                        <i class="ri-close-line"></i>
+                    </div>
+                </div>
+                <div class="nav__buttons">
+                    <!-- Toggle button -->
+                    <div class="nav__toggle" id="nav-toggle">
+                        <i class="ri-apps-2-fill"></i>
+                    </div>
+                </div>          
+            </nav>      
+        </header>
+
+        <!--==================== Home ====================-->
+        <section class="home section" id="home">
+            <div class="home_container container grid">
+                <div class="home_data">
+                    <span class="home_subtitle">Understanding Mental Health and Depression</span>
+                    <h4 class="home_title">SENTIMENT ANALYSIS</h4>
+                    <div class="home_list">
+                        <h4 class="dropdown">VISIT</h4>
+                        <ul class="home_items">
+                            <li class="home_item"><a href="https://www.facebook.com/watch/Masterchef/"target="_blank" class="home_link">Facebook</a></li>
+                            <li class="home_item"><a href="https://www.instagram.com/ydhrizqi._/"target="_blank" class="home_link">Instagram</a></li>
+                            <li class="home_item"><a href="https://twitter.com/ydhrizqi_"target="_blank" class="home_link">Twitter</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="home_description">
+                    <p class="desc">This website explores various aspects related to sentiment analysis in the context of mental health and depression. Visitors will find explanations on how sentiment analysis is used to understand the emotions and feelings of individuals who may be experiencing depression. Additionally, it delves into the early detection of mental health issues through social media data analysis.</p>
+                    <div class="box">
+                        <a href="#cerita">
+                            <div class="boxp">
+                                <h2 class="box_title">Crawling Data</h2>
+                                <img src="{% static 'analysis/images/tweet.png' %}" alt="">
+                            </div>
+                        </a>
+                        <a href="{% url 'task' %}">
+                            <div class="boxp">
+                                <h2 class="box_title">Task</h2>
+                                <img src="{% static 'analysis/images/text.png' %}" alt="">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+                <!--========== SCROLL UP ==========-->
+                <a href="#" class="scrollup" id="scroll-up">
+                    <i class="ri-arrow-up-line"></i>
+                </a>
+                
+                <!--=============== Header JS ===============-->
+                <script src="{% static 'analysis/js/header.js' %}"></script>

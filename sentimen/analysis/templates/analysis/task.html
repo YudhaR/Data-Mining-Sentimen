@@ -1,0 +1,98 @@
+{% load static  %}
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--=============== FAVICON ===============-->
+        <link rel="shortcut icon" href="{% static 'analysis/images/icon.png' %}" type="image/x-icon">
+
+        <!--=============== ICONS ===============-->
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+        <!--=============== CSS ===============-->
+        <link rel="stylesheet" href="{% static 'analysis/css/style.css' %}">
+
+        <title>Bajikuy</title>
+    </head>
+    <body>
+    
+
+
+        <!--==================== HEADER ====================-->
+        <header class="header" id="header">
+            <nav class="nav container">
+                <a href="{% url 'home' %}" class="nav__logo">
+                    <img src="{% static 'analysis/images/bajikuyyy.png' %}" alt="logo">
+                </a>
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="{% url 'home' %}" class="nav__link">Home</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="{% url 'task' %}" class="nav__link">Crawling Data</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="{% url 'task' %}" class="nav__link active-link">Task</a>
+                        </li>
+                    </ul>
+                    <!-- Close button -->
+                    <div class="nav__close" id="nav-close">
+                        <i class="ri-close-line"></i>
+                    </div>
+                </div>
+                <div class="nav__buttons">
+                    <!-- Toggle button -->
+                    <div class="nav__toggle" id="nav-toggle">
+                        <i class="ri-apps-2-fill"></i>
+                    </div>
+                </div>          
+            </nav>      
+        </header>
+
+
+        <!--==================== TASK ====================-->
+        <section class="menu section" id="menu">
+            <span class="menu_subtitle">Sentiment Analysis</span>
+            <h4 class="menu_title">Task</h4>
+
+            <div class="bmens container">
+                {% if items %}
+				{% for item in items %}
+                {% if item.status == 'input' %}
+                <a href="{% url 'input' item.id %}" class="bmen">
+                {% else %}
+                <a href="{% url 'create' %}" class="bmen">
+                {% endif %}
+                    <img src="{% static 'analysis/images/tweet.png' %}" alt="Menu Image" class="menu_img">
+
+                    <h3 class="menu_name">{{ item.title }}</h3>
+                    <h3 class="menu_description">Status : {{ item.status }}</h3>
+
+                    <h3 class="menu_price">{{ item.created_at }}</h3>
+                </a>
+                {% endfor %}
+				{% endif %}
+                <a href="{% url 'create'  %}" class="bmen">
+                    <img src="{% static 'analysis/images/create.png' %}" alt="Menu Image" class="menu_img">
+
+                    <h3 class="menu_name">Create Task</h3>
+                    <h3 class="menu_description">Status : Create</h3>
+
+                    <h3 class="menu_price">-</h3>
+                </a>
+            </div>
+        </section>
+
+
+
+        <!--========== SCROLL UP ==========-->
+        <a href="#" class="scrollup" id="scroll-up">
+            <i class="ri-arrow-up-line"></i>
+        </a>
+                
+        <!--=============== Header JS ===============-->
+        <script src="{% static 'analysis/js/header.js' %}"></script>
