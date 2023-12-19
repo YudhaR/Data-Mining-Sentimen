@@ -23,13 +23,16 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 
         <title>Bajikuy</title>
+        {% load bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
     </head>
     <body>
     
 
 
         <!--==================== TASK ====================-->
-        <section class="container">
+        <section class="container mt-5">
             <div class="card">
                 <div class="card-header bg-success">
                     <h2 class="text-white">
@@ -55,12 +58,12 @@
                     </form>
                 </div>
         
-                <div class="row">
+                <div class="card-body">
                     <div class="col-12">
                         <div class="table-responsive">
-                            <table id="datatable-tweets" class="table">
-                                <caption>Django + DataTable.js</caption>
-                                <thead>
+                            <table id="datatable-tweets" class="table table-bordered">
+                                <caption>Input Data</caption>
+                                <thead class="thead-dark">
                                     <tr>
                                         <th class="text-center">No</th>
                                         <th class="text-center">Username</th>
@@ -73,14 +76,105 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="card-footer">
+        
+                <div class="card-body">
                     <form action="{% url 'prepro'  %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="submit" value="Preprocessing" class="btn btn-primary" id="lokabtn" name="submit">
                     </form>
                 </div>
                 
+                <div class="card-body">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table id="datatable-cleans" class="table table-bordered">
+                                <caption>Clean Data</caption>
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th class="text-center">No</th>
+                                        <th class="text-center">Username</th>
+                                        <th class="tweet-column">Tweet</th>
+                                        <th class="tweet-column">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableBody_clean"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <form action="{% url 'label'  %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="submit" value="Labeling" class="btn btn-primary" id="lokabtn" name="submit">
+                    </form>
+                </div>
+
+                <div class="card-body">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table id="datatable-trains" class="table table-bordered">
+                                <caption>Labeling Data</caption>
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th class="text-center">No</th>
+                                        <th class="text-center">Username</th>
+                                        <th class="text-center">Tweet</th>
+                                        <th class="text-center">Compound_Score</th>
+                                        <th class="text-center">Sentiment</th>
+                                        <th class="text-center">Depretion</th>
+                                        <th class="text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableBody_train"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <form action="{% url 'latih'  %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="submit" value="Training" class="btn btn-primary" id="lokabtn" name="submit">
+                    </form>
+                </div>
+                {%if sentimenDataVisual %}
+                    <div class="card mx-auto">
+                        <div class="card-body">
+                            {{ sentimenDataVisual | safe }}
+                        </div>
+                    </div>
+
+                    <div class="card mx-auto">
+                        <div class="card-body">
+                            {{ wordCountYes | safe }}
+                        </div>
+                    </div>
+
+                    <div class="card mx-auto">
+                        <div class="card-body">
+                            {{ wordCountNo | safe }}
+                        </div>
+                    </div>
+
+                    <div class="card mx-auto">
+                        <div class="card-body">
+                            {{ trainDataVisual | safe }}
+                        </div>
+                    </div>
+
+                    <div class="card mx-auto">
+                        <div class="card-body">
+                            {{ reportDataVisual | safe }}
+                        </div>
+                    </div>
+
+                    <div class="card mx-auto">
+                        <div class="card-body">
+                            {{ akurasi }}
+                        </div>
+                    </div>
+                {%endif%}
             </div>
         </section>
         
@@ -104,4 +198,5 @@
         <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
         <!-- Custom JS -->
-        <script src="{% static 'analysis/js/index.js' %}"></script>
+        <script src="{% static 'analysis/js/tweets.js' %}"></script>
+        
